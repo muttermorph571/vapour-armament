@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vapour Armament - Design System</title>
+    <style>
+        :root {
+            /* Black/Red Brand Theme */
+            --primary-red: #dc2626;
+            --primary-red-dark: #b91c1c;
+            --primary-red-light: #fef2f2;
+            --primary-black: #000000;
+            --primary-black-light: #1f2937;
+            
+            /* Neutral Colors */
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --surface-dark: #e2e8f0;
+            --border: #d1d5db;
+            --border-light: #f3f4f6;
+            
+            /* Text Colors */
+            --text-primary: #000000;
+            --text-secondary: #374151;
+            --text-muted: #6b7280;
+            
+            /* Status Colors */
+            --success: #059669;
+            --warning: #d97706;
+            --error: #dc2626;
+            
+            /* Spacing */
+            --xs: 4px;
+            --sm: 8px;
+            --md: 16px;
+            --lg: 24px;
+            --xl: 32px;
+            --2xl: 48px;
+            
+            /* Radius & Shadows */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--primary-red) 100%);
+            color: white;
+            padding: var(--2xl) 0;
+            text-align: center;
+            margin-bottom: var(--3xl);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: var(--sm);
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--lg);
+        }
+
+        .section {
+            margin-bottom: var(--3xl);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-black);
+            margin-bottom: var(--xl);
+            border-bottom: 3px solid var(--primary-red);
+            padding-bottom: var(--sm);
+        }
+
+        /* Color Palette */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--lg);
+            margin-bottom: var(--2xl);
+        }
+
+        .color-card {
+            border-radius: var(--radius-lg);
+            padding: var(--lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            background: white;
+        }
+
+        .color-sample {
+            height: 120px;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .color-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--sm);
+            color: var(--primary-black);
+        }
+
+        .color-code {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+
+        /* Typography */
+        .typography-sample {
+            margin-bottom: var(--xl);
+            padding: var(--lg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--surface);
+        }
+
+        .typography-sample h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-black);
+            margin-bottom: var(--sm);
+        }
+
+        .typography-sample h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-black);
+            margin-bottom: var(--sm);
+        }
+
+        .typography-sample p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: var(--sm);
+        }
+
+        .typography-sample .code {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            background: white;
+            padding: var(--xs) var(--sm);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            display: inline-block;
+        }
+
+        /* Component Cards */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--lg);
+            margin-bottom: var(--2xl);
+        }
+
+        .component-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--lg);
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .component-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--lg);
+            color: var(--primary-black);
+        }
+
+        /* Buttons */
+        .btn {
+            border: none;
+            border-radius: var(--radius-md);
+            padding: var(--md) var(--lg);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-block;
+            margin-bottom: var(--sm);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-red-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--surface-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-black);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-red-light);
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: var(--lg);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--sm);
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px var(--primary-red-light);
+        }
+
+        /* Card Component */
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--lg);
+            margin-bottom: var(--md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--sm);
+            color: var(--primary-black);
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Screens */
+        .screen-container {
+            margin-bottom: var(--2xl);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .screen-header {
+            background-color: var(--primary-black);
+            color: white;
+            padding: var(--lg);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .screen-mockup {
+            background-color: var(--background);
+            min-height: 600px;
+            padding: var(--lg);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--primary-red) 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--2xl);
+        }
+
+        .login-logo {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: var(--lg);
+            color: var(--primary-red-light);
+        }
+
+        .login-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: var(--2xl);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form .form-label {
+            color: white;
+        }
+
+        .login-form .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .login-form .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Dashboard */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--lg);
+            padding-bottom: var(--md);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dashboard-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-black);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--md);
+            margin-bottom: var(--lg);
+        }
+
+        .stat-card {
+            background: var(--surface);
+            padding: var(--lg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-red);
+            display: block;
+            margin-bottom: var(--sm);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--lg);
+        }
+
+        .chart-placeholder {
+            background: var(--surface);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--2xl);
+            text-align: center;
+            color: var(--text-muted);
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Inventory */
+        .inventory-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--lg);
+            padding-bottom: var(--md);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: var(--sm);
+        }
+
+        .inventory-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-black);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--sm);
+            flex-wrap: wrap;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table thead {
+            background: var(--primary-black);
+            color: white;
+        }
+
+        .table th {
+            padding: var(--md);
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table td {
+            padding: var(--md);
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--surface-dark);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: var(--xs) var(--md);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-in-stock {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-low-stock {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-out-of-stock {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* POS */
+        .pos-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--lg);
+            height: 100%;
+        }
+
+        .pos-products {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: var(--lg);
+        }
+
+        .categories {
+            display: flex;
+            gap: var(--sm);
+            margin-bottom: var(--lg);
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: var(--sm) var(--md);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-btn.active {
+            background-color: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--md);
+        }
+
+        .product-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--md);
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+
+        .product-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-item-name {
+            font-weight: 500;
+            font-size: 13px;
+            margin-bottom: var(--sm);
+        }
+
+        .product-item-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .pos-cart {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: var(--lg);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+
+        .cart-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--lg);
+            color: var(--primary-black);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: var(--md);
+        }
+
+        .cart-items {
+            flex: 1;
+            margin-bottom: var(--lg);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--sm) 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 13px;
+        }
+
+        .cart-total {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-red);
+            text-align: right;
+            margin-bottom: var(--lg);
+            padding: var(--md) 0;
+            border-top: 2px solid var(--border);
+        }
+
+        .btn-complete {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-complete:hover {
+            background-color: #047857;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Vapour Armament</h1>
+        <p>Design System - Desktop View</p>
+    </header>
+
+    <div class="container">
+        <!-- Color Palette Section -->
+        <section class="section">
+            <h2 class="section-title">Color Palette</h2>
+            <div class="color-palette">
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #dc2626;"></div>
+                    <div class="color-info">
+                        <h3>Primary Red</h3>
+                        <p class="color-code">#dc2626</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #b91c1c;"></div>
+                    <div class="color-info">
+                        <h3>Red Dark</h3>
+                        <p class="color-code">#b91c1c</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #000000;"></div>
+                    <div class="color-info">
+                        <h3>Primary Black</h3>
+                        <p class="color-code">#000000</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #1f2937;"></div>
+                    <div class="color-info">
+                        <h3>Black Light</h3>
+                        <p class="color-code">#1f2937</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #ffffff; border: 1px solid #d1d5db;"></div>
+                    <div class="color-info">
+                        <h3>Background</h3>
+                        <p class="color-code">#ffffff</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #f8fafc;"></div>
+                    <div class="color-info">
+                        <h3>Surface</h3>
+                        <p class="color-code">#f8fafc</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #059669;"></div>
+                    <div class="color-info">
+                        <h3>Success</h3>
+                        <p class="color-code">#059669</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background-color: #d97706;"></div>
+                    <div class="color-info">
+                        <h3>Warning</h3>
+                        <p class="color-code">#d97706</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section class="section">
+            <h2 class="section-title">Typography</h2>
+            <div class="typography-sample">
+                <h2>Heading 2 (28px, Bold)</h2>
+                <p>Primary headings used for page sections and major titles.</p>
+                <span class="code">font-size: 28px; font-weight: 700;</span>
+            </div>
+            <div class="typography-sample">
+                <h3>Heading 3 (20px, Semibold)</h3>
+                <p>Secondary headings for subsections and component titles.</p>
+                <span class="code">font-size: 20px; font-weight: 600;</span>
+            </div>
+            <div class="typography-sample">
+                <p>Body text (16px, Regular) - Standard paragraph text for descriptions and content with good readability and line height.</p>
+                <span class="code">font-size: 16px; font-weight: 400; line-height: 1.6;</span>
+            </div>
+            <div class="typography-sample">
+                <p style="font-size: 14px; color: var(--text-muted);">Small text (14px) - For secondary information, labels, and captions.</p>
+                <span class="code">font-size: 14px; font-weight: 400; color: #6b7280;</span>
+            </div>
+        </section>
+
+        <!-- Components Section -->
+        <section class="section">
+            <h2 class="section-title">Components</h2>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h3>Buttons</h3>
+                    <button class="btn btn-primary">Primary Button</button>
+                    <button class="btn btn-secondary">Secondary Button</button>
+                    <button class="btn btn-outline">Outline Button</button>
+                </div>
+                <div class="component-card">
+                    <h3>Form Controls</h3>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="example@email.com">
+                    </div>
+                </div>
+                <div class="component-card">
+                    <h3>Card Component</h3>
+                    <div class="card">
+                        <h4>Card Title</h4>
+                        <p>This is a card component used for grouping related content with consistent styling and spacing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Screen -->
+        <section class="section">
+            <h2 class="section-title">Login Screen</h2>
+            <div class="screen-container">
+                <div class="screen-header">Desktop (1200px)</div>
+                <div class="screen-mockup login-screen">
+                    <div class="login-logo">Vapour Armament</div>
+                    <div class="login-form">
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="admin@Vapour Armament.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" placeholder="Enter your password">
+                        </div>
+                        <button class="btn btn-primary">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Dashboard -->
+        <section class="section">
+            <h2 class="section-title">Analytics Dashboard</h2>
+            <div class="screen-container">
+                <div class="screen-header">Desktop (1200px)</div>
+                <div class="screen-mockup">
+                    <div class="dashboard-header">
+                        <h3 class="dashboard-title">Analytics Dashboard</h3>
+                        <div style="display: flex; gap: var(--sm);">
+                            <button class="btn btn-secondary" style="padding: var(--sm) var(--md); font-size: 13px;">Export</button>
+                            <button class="btn btn-secondary" style="padding: var(--sm) var(--md); font-size: 13px;">Filter</button>
+                        </div>
+                    </div>
+                    <div style="margin-top: var(--lg);">
+                        <h4 style="font-size: 16px; font-weight: 600; margin-bottom: var(--md);">Branch Analytics & Inventory Overview</h4>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Branch Name</th>
+                                        <th>Daily Revenue</th>
+                                        <th>Monthly Revenue</th>
+                                        <th>Transactions</th>
+                                        <th>Items in Stock</th>
+                                        <th>Low Stock Items</th>
+                                        <th>Performance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Downtown Branch</strong></td>
+                                        <td style="color: var(--primary-red); font-weight: 600;">$12,450</td>
+                                        <td>$89,230</td>
+                                        <td>156</td>
+                                        <td>2,340</td>
+                                        <td><span class="status-badge status-low-stock">5</span></td>
+                                        <td style="color: var(--success); font-weight: 600;">4.8★</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Westside Branch</strong></td>
+                                        <td style="color: var(--primary-red); font-weight: 600;">$9,880</td>
+                                        <td>$71,240</td>
+                                        <td>132</td>
+                                        <td>1,985</td>
+                                        <td><span class="status-badge status-out-of-stock">12</span></td>
+                                        <td style="color: var(--success); font-weight: 600;">4.5★</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Eastside Branch</strong></td>
+                                        <td style="color: var(--primary-red); font-weight: 600;">$10,320</td>
+                                        <td>$79,450</td>
+                                        <td>142</td>
+                                        <td>2,120</td>
+                                        <td><span class="status-badge status-low-stock">3</span></td>
+                                        <td style="color: var(--success); font-weight: 600;">4.7★</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Northgate Branch</strong></td>
+                                        <td style="color: var(--primary-red); font-weight: 600;">$8,950</td>
+                                        <td>$65,320</td>
+                                        <td>118</td>
+                                        <td>1,750</td>
+                                        <td><span class="status-badge status-out-of-stock">8</span></td>
+                                        <td style="color: var(--warning); font-weight: 600;">4.2★</td>
+                                    </tr>
+                                    <tr style="background: var(--surface-dark); font-weight: 700;">
+                                        <td>TOTAL/AVERAGE</td>
+                                        <td style="color: var(--primary-red);">$41,600</td>
+                                        <td style="color: var(--primary-red);">$305,240</td>
+                                        <td style="color: var(--primary-red);">548</td>
+                                        <td style="color: var(--primary-red);">8,195</td>
+                                        <td style="color: var(--primary-red);">28</td>
+                                        <td style="color: var(--primary-red);">4.55★</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inventory Management -->
+        <section class="section">
+            <h2 class="section-title">Inventory Management</h2>
+            <div class="screen-container">
+                <div class="screen-header">Desktop (1200px)</div>
+                <div class="screen-mockup">
+                    <div class="inventory-controls">
+                        <h3 class="inventory-title">Inventory Management</h3>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary" style="padding: var(--sm) var(--md); width: auto; font-size: 13px;">Add Product</button>
+                            <button class="btn btn-secondary" style="padding: var(--sm) var(--md); width: auto; font-size: 13px;">Bulk Import</button>
+                            <button class="btn btn-secondary" style="padding: var(--sm) var(--md); width: auto; font-size: 13px;">Export</button>
+                            <button class="btn btn-secondary" style="padding: var(--sm) var(--md); width: auto; font-size: 13px;">Stock Alerts</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>SKU</th>
+                                    <th>Stock Level</th>
+                                    <th>Unit Price</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Premium Vape Pen Pro - Black</strong></td>
+                                    <td>VPP-BLK-001</td>
+                                    <td>23</td>
+                                    <td>$49.99</td>
+                                    <td>Vape Pens</td>
+                                    <td><span class="status-badge status-in-stock">In Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Berry Blast E-Liquid 30ml</strong></td>
+                                    <td>EL-BRY-030</td>
+                                    <td style="color: var(--error); font-weight: 600;">3</td>
+                                    <td>$24.99</td>
+                                    <td>E-Liquids</td>
+                                    <td><span class="status-badge status-low-stock">Low Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Complete Starter Kit Bundle</strong></td>
+                                    <td>STK-BDL-001</td>
+                                    <td>45</td>
+                                    <td>$79.99</td>
+                                    <td>Bundles</td>
+                                    <td><span class="status-badge status-in-stock">In Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nicotine Replacement Pods</strong></td>
+                                    <td>NRP-MLT-001</td>
+                                    <td>67</td>
+                                    <td>$19.99</td>
+                                    <td>Pods</td>
+                                    <td><span class="status-badge status-in-stock">In Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Universal Battery Charger</strong></td>
+                                    <td>BAT-CHG-001</td>
+                                    <td style="color: var(--error); font-weight: 600;">2</td>
+                                    <td>$14.99</td>
+                                    <td>Accessories</td>
+                                    <td><span class="status-badge status-out-of-stock">Out of Stock</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- POS Screen -->
+        <section class="section">
+            <h2 class="section-title">Point of Sale (POS)</h2>
+            <div class="screen-container">
+                <div class="screen-header">Desktop (1200px)</div>
+                <div class="screen-mockup">
+                    <div class="pos-layout">
+                        <div class="pos-products">
+                            <div class="categories">
+                                <button class="category-btn active">All Products</button>
+                                <button class="category-btn">Vape Pens</button>
+                                <button class="category-btn">E-Liquids</button>
+                                <button class="category-btn">Pods</button>
+                                <button class="category-btn">Accessories</button>
+                                <button class="category-btn">Bundles</button>
+                            </div>
+                            <div class="search-container" style="margin-bottom: var(--lg);">
+                                <div style="position: relative;">
+                                    <input type="text" class="form-input" placeholder="Search products..." style="padding-left: 40px;">
+                                    <div style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 16px;">🔍</div>
+                                </div>
+                            </div>
+                            <div class="products-grid">
+                                <div class="product-item">
+                                    <div class="product-item-name">Premium Vape Pen</div>
+                                    <div class="product-item-price">$49.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-item-name">Berry Blast E-Liquid</div>
+                                    <div class="product-item-price">$24.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-item-name">Starter Kit</div>
+                                    <div class="product-item-price">$79.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-item-name">Pods Pack</div>
+                                    <div class="product-item-price">$19.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-item-name">Battery Charger</div>
+                                    <div class="product-item-price">$14.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-item-name">Cleaning Kit</div>
+                                    <div class="product-item-price">$9.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-item-name">Carrying Case</div>
+                                    <div class="product-item-price">$29.99</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-item-name">Flavor Sampler</div>
+                                    <div class="product-item-price">$34.99</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pos-cart">
+                            <div class="cart-title">Current Order (4 items)</div>
+                            <div class="cart-items">
+                                <div class="cart-item">
+                                    <span>Premium Vape Pen</span>
+                                    <span>$49.99</span>
+                                </div>
+                                <div class="cart-item">
+                                    <span>Berry Blast E-Liquid</span>
+                                    <span>$24.99</span>
+                                </div>
+                                <div class="cart-item">
+                                    <span>Battery Charger</span>
+                                    <span>$14.99</span>
+                                </div>
+                                <div class="cart-item">
+                                    <span>Carrying Case</span>
+                                    <span>$29.99</span>
+                                </div>
+                            </div>
+                            <div class="cart-total">Total: $119.96</div>
+                            <button class="btn btn-complete">Complete Transaction</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
